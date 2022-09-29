@@ -1,7 +1,9 @@
 const input = document.querySelector('input');
 const form = document.querySelector('form');
 const container = document.querySelector('.container');
-let isTrue = false;
+
+const dataStorage = localStorage;
+
 
 
 form.addEventListener('submit', (e) => {
@@ -10,16 +12,16 @@ form.addEventListener('submit', (e) => {
 
     console.log(input.value);
     list.innerHTML += `<li>${input.value}</li>`;
+    window.localStorage.setItem('dataStorage', list.innerHTML)
     item.value = null;
 })
 
 list.addEventListener('click', (e) => {
 
-    if(isTrue === false){
+    if(!e.target.classList.contains('checked')){
         e.target.classList.add('checked');
-        isTrue = true;
 
-    } else if (isTrue === true){
+    } else {
         e.target.remove();
     }
 
